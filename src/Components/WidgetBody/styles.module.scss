@@ -11,6 +11,10 @@
         row-gap: 10px;
         justify-content: space-around;
     }
+
+    .widget__infoBlock {
+        height: 100%;
+    }
 }
 
 @media (max-width: 470px) {

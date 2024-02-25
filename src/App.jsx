@@ -11,6 +11,8 @@ function App() {
     const [coords, setCoords] = useState({})
     const [city, setCity] = useState('')
     const [dataWeather, setDataWeather] = useState({})
+    const [dataWeatherFiveDays, setDataWeatherFiveDays] = useState({ city: '', list: [] })
+    const apiKey = '71785f3da74dc6dd12f7757a1f01cf6e'
 
     const handleCoordValue = (coords) => {
         setCoords(coords)
@@ -22,10 +24,12 @@ function App() {
 
     const request = () => {
         let url = ''
-        if (coords.latitude) {
-            url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=71785f3da74dc6dd12f7757a1f01cf6e&lang=ru`
+        if (coords.latitude && coords.longitude) {
+            url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${apiKey}&lang=ru`
+            setCoords({})
         } else if (city !== '') {
-            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=71785f3da74dc6dd12f7757a1f01cf6e&lang=ru`
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=ru`
+            setCity('')
         }
         fetch(url)
             .then((response) => {
@@ -53,34 +57,51 @@ function App() {
             });
     }
 
+    const requestFiveDay = () => {
+        let url = ''
+        if (coords.latitude && coords.longitude) {
+            url = `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&appid=${apiKey}&lang=ru`
+            setCoords({})
+        } else if (city !== '') {
+            url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&lang=ru`
+            setCity('')
+        }
+        fetch(url)
+            .then((response) => {
+                // console.log('response', response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data)
+                setDataWeatherFiveDays({ city: data.city.name, list: data.list })
+            })
+            .catch(() => {
+                console.log('error на 5 дней');
+            });
+    }
+
     useEffect(() => {
         console.log(coords)
         console.log(city)
         request()
+        requestFiveDay()
     }, [coords, city]);
 
     useEffect(() => {
         if (dataWeather) {
-          console.log(dataWeather);
+            console.log(dataWeather);
         }
-      }, [dataWeather]);
+        if (dataWeatherFiveDays && dataWeatherFiveDays.list.length > 39) {
+            console.log(dataWeatherFiveDays.list[15].main.temp);
+          }
+      }, [dataWeather, dataWeatherFiveDays]);
 
     return (
         <Section>
             <WidgetBody>
                 <SearchBar onCityGet={handleCityName} />
                 <BtnLocation onCoordsGet={handleCoordValue} />
-                {/* { !coords.latitude ? "" : <div>{`${coords.latitude} ${coords.longitude}`}</div> } */}
-                { !dataWeather.city ? "" : 
-                    <InfoWeather {... dataWeather}
-                        /* city={dataWeather.city}
-                        cloudiness={dataWeather.cloudiness}
-                        temperature={dataWeather.temp}
-                        pressure={dataWeather.pressure}
-                        wind={dataWeather.wind + 'м/с'}
-                        humidity={dataWeather.humidity} */
-                    /> 
-                }
+                { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> }
             </WidgetBody>
         </Section>
     );
