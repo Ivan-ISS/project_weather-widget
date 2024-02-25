@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
+import { dateFormat } from "../src/Modules/dateFormat";
 import Section from "./Components/Section";
 import WidgetBody from "./Components/WidgetBody";
 import SearchBar from "./Components/SearchBar";
@@ -36,11 +37,15 @@ function App() {
                 //console.log(data)
                 setDataWeather({
                     city: data.name,
-                    temp: data.main.temp,
+                    temperature: Math.round(data.main.temp - 273),
+                    temperatureMin: Math.round(data.main.temp_min - 273),
+                    temperatureMax: Math.round(data.main.temp_max - 273),
                     cloudiness: data.weather[0].description,
-                    pressure: data.main.pressure,
+                    pressure: Math.round(data.main.pressure * 0.7500637554192),
                     wind: data.wind.speed,
-                    humidity: data.main.humidity
+                    humidity: data.main.humidity,
+                    codeIcon: data.weather[0].icon,
+                    date: dateFormat(data.dt)
                 })
             })
             .catch(() => {
@@ -67,13 +72,13 @@ function App() {
                 <BtnLocation onCoordsGet={handleCoordValue} />
                 {/* { !coords.latitude ? "" : <div>{`${coords.latitude} ${coords.longitude}`}</div> } */}
                 { !dataWeather.city ? "" : 
-                    <InfoWeather 
-                        city={dataWeather.city}
+                    <InfoWeather {... dataWeather}
+                        /* city={dataWeather.city}
                         cloudiness={dataWeather.cloudiness}
                         temperature={dataWeather.temp}
                         pressure={dataWeather.pressure}
                         wind={dataWeather.wind + 'м/с'}
-                        humidity={dataWeather.humidity}
+                        humidity={dataWeather.humidity} */
                     /> 
                 }
             </WidgetBody>

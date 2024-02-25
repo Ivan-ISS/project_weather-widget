@@ -1,0 +1,33 @@
+@import "/src/styles/_color";
+@import "../../styles/_variables";
+
+.widget__weatherToday {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+
+    .widget__city {
+        font-size: $font-size-large;
+    }
+    
+    .widget__temperatureCurrent {
+        font-size: $font-size-middle;
+    }
+
+    .widget__temperaturePlus {
+        color: $base-warm;
+    }
+
+    .widget__temperatureMinus {
+        color: $base-blue;
+    }
+
+    .widget__temperatureExt {
+        font-size: 20px;
+    }
+
+    .widget__cloudiness {
+        font-size: $font-size-middle;
+    }
+}
