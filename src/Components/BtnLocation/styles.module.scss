@@ -1,0 +1,27 @@
+@import "/src/styles/_color";
+@import "../../styles/_variables";
+
+.widget__btnLocation {
+    display: flex;
+    column-gap: 8px;
+    justify-content: center;
+    align-items: center;
+    background: $base-btn;
+    border: 1px solid $base-gray;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+
+    font-family: "Montserrat";
+    font-size: $font-size-base;
+    /* transition: 0.25s ease; */
+
+    .widget__iconLocation {
+        transition: 0.25s ease;
+    }
+
+    &:hover .widget__iconLocation {
+        fill: $base-blue;
+    }
+}

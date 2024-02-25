@@ -1,0 +1,26 @@
+@import "/src/styles/_color";
+
+.widget__body {
+    border: 1px solid $base-gray;
+    border-radius: 20px;
+    min-height: 700px;
+    padding: 35px 10px;
+
+    .widget__coordinateBlock {
+        display: flex;
+        row-gap: 10px;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 470px) {
+
+    .widget__body {
+
+        .widget__coordinateBlock {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+}

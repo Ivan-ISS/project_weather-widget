@@ -1,0 +1,12 @@
+.widget__container {
+    max-width: 1120px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0px 15px;
+    box-sizing: content-box;
+    text-align: center;
+
+    .widget__title {
+        font-size: 28px;
+    }
+}
