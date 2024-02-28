@@ -10,7 +10,7 @@ const InfoWeather = ({ city, cloudiness, temperature, temperatureMin, temperatur
                     {city}
                 </h2>
                 <p>
-                    {`${date.currentDate} ${date.currentTime}`}
+                    {`${date.currentDate} ${date.currentTime} мск`}
                 </p>
                 <p>
                     {date.dayWeek}

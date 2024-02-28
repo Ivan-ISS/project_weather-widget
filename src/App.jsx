@@ -6,6 +6,7 @@ import WidgetBody from "./Components/WidgetBody";
 import SearchBar from "./Components/SearchBar";
 import BtnLocation from "./Components/BtnLocation";
 import InfoWeather from "./Components/InfoWeather";
+import InfoWeatherFiveDays from "./Components/InfoWeatherFiveDays";
 
 function App() {
     const [coords, setCoords] = useState({})
@@ -73,7 +74,23 @@ function App() {
             })
             .then((data) => {
                 console.log(data)
-                setDataWeatherFiveDays({ city: data.city.name, list: data.list })
+                setDataWeatherFiveDays({ city: data.city.name, /* list: data.list */ list: [] })
+                for (let i = 0; i < data.list.length; i++) {
+                    setDataWeatherFiveDays(prevState => ({ 
+                        city: data.city.name,
+                        list: [...prevState.list, { 
+                            date: dateFormat(data.list[i].dt),
+                            temperature: Math.round(data.list[i].main.temp - 273),
+                            temperatureMin: Math.round(data.list[i].main.temp_min - 273),
+                            temperatureMax: Math.round(data.list[i].main.temp_max - 273),
+                            pressure: Math.round(data.list[i].main.pressure * 0.7500637554192),
+                            humidity: data.list[i].main.humidity,
+                            cloudiness: data.list[i].weather[0].description,
+                            codeIcon: data.list[i].weather[0].icon,
+                            wind: data.list[i].wind.speed,
+                        }]
+                    }));
+                }
             })
             .catch(() => {
                 console.log('error на 5 дней');
@@ -81,19 +98,20 @@ function App() {
     }
 
     useEffect(() => {
-        console.log(coords)
-        console.log(city)
+        /* console.log(coords)
+        console.log(city) */
         request()
         requestFiveDay()
     }, [coords, city]);
 
     useEffect(() => {
+        console.log(dataWeatherFiveDays.city);
         if (dataWeather) {
-            console.log(dataWeather);
+            /* console.log(dataWeather); */
         }
         if (dataWeatherFiveDays && dataWeatherFiveDays.list.length > 39) {
-            console.log(dataWeatherFiveDays.list[15].main.temp);
-          }
+            console.log(dataWeatherFiveDays.list);
+        }
       }, [dataWeather, dataWeatherFiveDays]);
 
     return (
@@ -101,7 +119,8 @@ function App() {
             <WidgetBody>
                 <SearchBar onCityGet={handleCityName} />
                 <BtnLocation onCoordsGet={handleCoordValue} />
-                { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> }
+                {/* { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> } */}
+                { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> }
             </WidgetBody>
         </Section>
     );

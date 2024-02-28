@@ -29,7 +29,7 @@ const SearchBar = ({ onCityGet }) => {
             <div className={style.widget__searchBar}>
                 <input
                     className={style.widget__searchLine}
-                    placeholder="Введите город"
+                    placeholder="Название города или села"
                     value={inputValue}
                     onChange={handleChange}
                     onKeyDown={handleKeyPress}

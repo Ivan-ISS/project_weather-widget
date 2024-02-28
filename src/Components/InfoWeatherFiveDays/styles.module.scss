@@ -1,0 +1,56 @@
+@import "/src/styles/_color";
+@import "../../styles/_variables";
+
+.widget__weatherFiveDays {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+
+    .widget__weatherTable {
+
+        .widget__tableColumn {
+            display: grid;
+            grid-auto-columns: 1fr;
+            grid-auto-flow: column;
+            grid-template-rows: auto auto;
+    
+            .widget__cloudinessImg {
+                width: 50px;
+            }
+    
+            .widget__tableRow {
+                display: grid;
+                grid-auto-rows: 1fr;
+            }
+
+            .widget__dayWeek {
+                grid-column: span auto;
+            }
+        }
+    }
+
+    .widget__city {
+        font-size: $font-size-large;
+    }
+    
+    .widget__temperatureCurrent {
+        font-size: $font-size-middle;
+    }
+
+    .widget__temperaturePlus {
+        color: $base-warm;
+    }
+
+    .widget__temperatureMinus {
+        color: $base-blue;
+    }
+
+    .widget__temperatureExt {
+        font-size: 20px;
+    }
+
+    .widget__cloudiness {
+        font-size: $font-size-middle;
+    }
+}
