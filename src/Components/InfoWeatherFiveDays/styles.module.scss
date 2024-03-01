@@ -13,7 +13,7 @@
             display: grid;
             grid-auto-columns: 1fr;
             grid-auto-flow: column;
-            grid-template-rows: auto auto;
+            column-gap: 5px;
     
             .widget__cloudinessImg {
                 width: 50px;
@@ -29,12 +29,20 @@
                 grid-auto-columns: 1fr;
                 grid-auto-flow: column;
                 grid-template-rows: auto auto;
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
-                background: linear-gradient(to bottom, #7171fc, #2a2afc);
                 
                 .widget__date {
                     grid-column: span 3;
+                    border-top-left-radius: 15px;
+                    border-top-right-radius: 15px;
+                    background: linear-gradient(to bottom, #9d9dff, #4e4eff);
+                }
+
+                .widget__tableRow:not(:nth-of-type(3)) {
+                    background: linear-gradient(to bottom, #777777, #ffffff);
+                }
+
+                .widget__tableRow:nth-of-type(3) {
+                    background: linear-gradient(to bottom, #ffefa6, #ffffff);
                 }
             }
         }
