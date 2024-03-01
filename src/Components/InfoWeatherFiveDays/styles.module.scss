@@ -25,7 +25,17 @@
             }
 
             .widget__dayWeek {
-                grid-column: span auto;
+                display: grid;
+                grid-auto-columns: 1fr;
+                grid-auto-flow: column;
+                grid-template-rows: auto auto;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                background: linear-gradient(to bottom, #7171fc, #2a2afc);
+                
+                .widget__date {
+                    grid-column: span 3;
+                }
             }
         }
     }

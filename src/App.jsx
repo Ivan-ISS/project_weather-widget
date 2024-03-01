@@ -120,7 +120,13 @@ function App() {
                 <SearchBar onCityGet={handleCityName} />
                 <BtnLocation onCoordsGet={handleCoordValue} />
                 {/* { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> } */}
-                { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> }
+                {/* { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> } */}
+                {
+                    !dataWeatherFiveDays.list ? "" :
+                    
+                            <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} />
+
+                }
             </WidgetBody>
         </Section>
     );
