@@ -27,8 +27,8 @@ const InfoWeatherFiveDays = ({ list, city }) => {
                                                     {list.map((elementJ, index) => {
                                                         return (
                                                             <>
-                                                            {elementJ.date.currentDate === element.date.currentDate && (['0:00', '15:00', '21:00'].includes(elementJ.date.currentTime)) ?
-                                                                <div className={style.widget__tableRow}>
+                                                            {elementJ.date.currentDate === element.date.currentDate && (['6:00', '12:00', '18:00'].includes(elementJ.date.currentTime)) ?
+                                                                <div className={ `${style.widget__tableRow} ${elementJ.date.currentTime === '12:00' ? style.widget__tableRowLight : style.widget__tableRowDark}` }>
                                                                     <div className={style.widget__time}>
                                                                         {elementJ.date.currentTime}
                                                                     </div>
