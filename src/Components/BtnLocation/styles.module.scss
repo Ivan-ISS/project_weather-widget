@@ -15,13 +15,19 @@
 
     font-family: "Montserrat";
     font-size: $font-size-base;
-    /* transition: 0.25s ease; */
+    transition: 0.25s ease;
 
     .widget__iconLocation {
         transition: 0.25s ease;
     }
 
+    &:hover {
+        color: #fff;
+        font-weight: 700;
+        background: $base-btn-hover;
+    }
+
     &:hover .widget__iconLocation {
-        fill: $base-blue;
+        fill: #fff;
     }
 }

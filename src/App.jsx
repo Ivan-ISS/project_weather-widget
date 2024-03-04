@@ -5,11 +5,13 @@ import Section from "./Components/Section";
 import WidgetBody from "./Components/WidgetBody";
 import SearchBar from "./Components/SearchBar";
 import BtnLocation from "./Components/BtnLocation";
+import BtnSwitch from "./Components/BtnSwitch";
 import InfoWeather from "./Components/InfoWeather";
 import InfoWeatherFiveDays from "./Components/InfoWeatherFiveDays";
 
 function App() {
     const [coords, setCoords] = useState({})
+    let [period, setPeriod] = useState()
     const [city, setCity] = useState('')
     const [dataWeather, setDataWeather] = useState({})
     const [dataWeatherFiveDays, setDataWeatherFiveDays] = useState({ city: '', list: [] })
@@ -17,6 +19,10 @@ function App() {
 
     const handleCoordValue = (coords) => {
         setCoords(coords)
+    }
+
+    const handlerClickSwitch = (period) => {
+        setPeriod(period)
     }
 
     const handleCityName = (city) => {
@@ -119,9 +125,17 @@ function App() {
             <WidgetBody>
                 <SearchBar onCityGet={handleCityName} />
                 <BtnLocation onCoordsGet={handleCoordValue} />
+                <BtnSwitch onPeriodGet={handlerClickSwitch} />
                 {/* { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> } */}
                 {/* { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> } */}
-                { !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} /> }
+                {/* { !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} /> } */}
+                {
+                    !dataWeather.city
+                    ? ""
+                    : period
+                    ? <InfoWeather {... dataWeather} />
+                    : !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} />
+                }
             </WidgetBody>
         </Section>
     );

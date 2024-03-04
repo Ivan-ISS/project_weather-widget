@@ -54,34 +54,34 @@
                     justify-content: center;
                     column-gap: 5px;
                     padding: 5px;
-                    background: linear-gradient(to right, #9d9dff, #4e4eff);
+                    color: #fff;
+                    background: linear-gradient(to right, #9d9dff -35%, #0060a9 90%);
                     
                     .widget__day {
                         text-transform: uppercase;
-                    }
-
-                    .widget__currentDate {
-                        font-size: 12px;
                     }
                 }
 
                 .widget__time {
                     min-width: 35px;
-                    font-size: 12px;
+                }
+
+                .widget__cloudiness {
+                    min-width: 170px;
                 }
 
                 .widget__pressure,
                 .widget__humidity,
                 .widget__wind {
-                    font-size: 12px;
+                    font-weight: 400;
                 }
 
                 .widget__tableRowLight {
-                    background: linear-gradient(to right, #ffefa6, #ffffff);
+                    background: linear-gradient(to right, #fffea6, #ffffff);
                 }
 
                 .widget__tableRowDark {
-                    background: linear-gradient(to right, #777777, #ffffff);
+                    background: linear-gradient(to right, #a0a0a0, #ffffff);
                 }
             }
         }
@@ -109,8 +109,67 @@
     .widget__temperatureExt {
         font-size: 20px;
     }
+}
 
-    .widget__cloudiness {
-        min-width: 115px;
+@media (max-width: 768px) {
+
+    .widget__weatherFiveDays {
+
+        .widget__weatherTable {
+    
+            .widget__tableColumn {
+
+                .widget__dayWeek {
+
+                    .widget__cloudiness {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 490px) {
+
+    .widget__weatherFiveDays {
+
+        .widget__weatherTable {
+    
+            .widget__tableColumn {
+
+                .widget__tableRow {
+                    padding: 3px 5px;
+                    column-gap: 3px;
+                }
+
+                .widget__dayWeek {
+
+                    .widget__date {
+                        min-width: 50px;
+                        
+                        .widget__day {
+                            text-transform: uppercase;
+                        }
+
+                        .widget__currentDate {
+                            display: none;
+                        }
+                    }
+
+
+                    .widget__pressure,
+                    .widget__humidity,
+                    .widget__wind,
+                    .widget__time {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+
+        .widget__city {
+            font-size: $font-size-middle;
+        }
     }
 }

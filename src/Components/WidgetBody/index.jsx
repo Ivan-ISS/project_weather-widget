@@ -19,6 +19,11 @@ const WidgetBody = ({ children }) => {
                     childrenArray[2]
                 }
             </div>
+            <div className={style.widget__infoBlock}>
+                {
+                    childrenArray[3]
+                }
+            </div>
        </div>
    )
 }

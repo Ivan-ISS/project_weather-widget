@@ -22,11 +22,11 @@ const InfoWeather = ({ city, cloudiness, temperature, temperatureMin, temperatur
                 </p>
                 <img src={`https://openweathermap.org/img/wn/${codeIcon}@2x.png`} alt="cloudiness" />
             </div>
-            <div className={ `${temperature > 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus} ${style.widget__temperatureCurrent}` }>
+            <div className={ `${temperature >= 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus} ${style.widget__temperatureCurrent}` }>
                 {temperature} &#176;C
                 <p className={style.widget__temperatureExt}>
-                    <span className={ temperatureMin > 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus }>{temperatureMin} / </span>
-                    <span className={ temperatureMax > 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus }>{temperatureMax}</span>
+                    <span className={ temperatureMin >= 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus }>{temperatureMin} / </span>
+                    <span className={ temperatureMax >= 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus }>{temperatureMax}</span>
                 </p>
             </div>
             <div>

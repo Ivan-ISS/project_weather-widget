@@ -39,7 +39,7 @@ const InfoWeatherFiveDays = ({ list, city }) => {
                                                                         <div className={style.widget__cloudiness}>
                                                                             {elementJ.cloudiness}
                                                                         </div>
-                                                                        <div className={ `${elementJ.temperature > 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus} ${style.widget__temperatureCurrent}` }>
+                                                                        <div className={ `${elementJ.temperature >= 0 ? style.widget__temperaturePlus : style.widget__temperatureMinus} ${style.widget__temperatureCurrent}` }>
                                                                             {elementJ.temperature}&#176;
                                                                         </div>
                                                                         <div className={style.widget__pressure}>
