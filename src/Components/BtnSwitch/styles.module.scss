@@ -1,0 +1,24 @@
+@import "/src/styles/_color";
+@import "../../styles/_variables";
+
+.widget__btnSwitch {
+    display: flex;
+    column-gap: 8px;
+    justify-content: center;
+    align-items: center;
+    background: $base-btn;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    min-width: 210px;
+
+    font-family: "Montserrat", "helvetica", "arial", "verdana", "sans-serif";
+    font-size: $font-size-base;
+    transition: 0.25s ease;
+
+    &:hover {
+        color: #fff;
+        font-weight: 700;
+        background: $base-btn-hover;
+    }
+}

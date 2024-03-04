@@ -3,7 +3,7 @@ import { useState } from "react";
 import style from './styles.module.scss'
 
 const BtnSwitch = ({ onPeriodGet }) => {
-    let [period, setPeriod] = useState(true)
+    let [period, setPeriod] = useState(false)
 
     const handlerClickSwitch = () => {
         setPeriod(v => !v)
@@ -12,11 +12,11 @@ const BtnSwitch = ({ onPeriodGet }) => {
 
     return (
             <button 
-                className={style.widget__btnLocation}
+                className={style.widget__btnSwitch}
                 type="button"
                 onClick={handlerClickSwitch}
             >
-            { period === true ? "5 суток" : "Сейчас" }
+            { period === false ? "Показать погоду на 5 суток" : "Показать погоду сейчас" }
             </button>
     )
 }

@@ -44,13 +44,13 @@ const SearchBar = ({ onCityGet }) => {
                     </svg>
                 </button>
             </div>
-            {
+            {/* {
                 inputValue === "" && (messege === null || messege === "") ?
                 "" :
                 inputValue !== "" && messege === null ?
                 <div>Идет набор текста…</div> :
                 <div>Вы ввели город: {messege}</div>
-            }
+            } */}
         </div>
     )
 }

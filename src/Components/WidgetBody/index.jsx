@@ -14,7 +14,7 @@ const WidgetBody = ({ children }) => {
                     childrenArray[1]
                 }
             </div>
-            <div className={style.widget__infoBlock}>
+            <div className={style.widget__switchBlock}>
                 {
                     childrenArray[2]
                 }

@@ -2,10 +2,9 @@
 @import "../../styles/_variables";
 
 .widget__weatherFiveDays {
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
-    row-gap: 50px;
+    row-gap: 25px;
 
     .widget__weatherTable {
         font-size: $font-size-table;
@@ -34,6 +33,7 @@
                 div {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                 }
             }
 
@@ -68,6 +68,14 @@
 
                 .widget__cloudiness {
                     min-width: 170px;
+                }
+
+                /* .widget__pressure {
+                    min-width: 78px;
+                } */
+
+                .widget__humidity {
+                    min-width: 31px;
                 }
 
                 .widget__pressure,

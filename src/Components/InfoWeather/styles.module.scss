@@ -2,7 +2,6 @@
 @import "../../styles/_variables";
 
 .widget__weatherToday {
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     row-gap: 25px;
@@ -29,5 +28,14 @@
 
     .widget__cloudiness {
         font-size: $font-size-middle;
+    }
+}
+
+@media (max-width: 490px) {
+    .widget__weatherToday {
+
+        .widget__city {
+            font-size: $font-size-middle;
+        }
     }
 }

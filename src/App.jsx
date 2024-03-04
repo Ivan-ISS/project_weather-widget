@@ -11,7 +11,8 @@ import InfoWeatherFiveDays from "./Components/InfoWeatherFiveDays";
 
 function App() {
     const [coords, setCoords] = useState({})
-    let [period, setPeriod] = useState()
+    let [period, setPeriod] = useState(true)
+    const [loading, setLoading] = useState('')
     const [city, setCity] = useState('')
     const [dataWeather, setDataWeather] = useState({})
     const [dataWeatherFiveDays, setDataWeatherFiveDays] = useState({ city: '', list: [] })
@@ -58,9 +59,11 @@ function App() {
                     codeIcon: data.weather[0].icon,
                     date: dateFormat(data.dt)
                 })
+                setLoading('')
             })
             .catch(() => {
                 console.log('error');
+                if (coords.latitude || coords.longitude || city) { setLoading('Информация не найдена...') }
             });
     }
 
@@ -97,15 +100,18 @@ function App() {
                         }]
                     }));
                 }
+                setLoading('')
             })
             .catch(() => {
                 console.log('error на 5 дней');
+                if (coords.latitude || coords.longitude || city) { setLoading('Информация не найдена...') }
             });
     }
 
     useEffect(() => {
         /* console.log(coords)
         console.log(city) */
+        if (coords.latitude || coords.longitude || city) { setLoading('Идет поиск данных о погоде...') }
         request()
         requestFiveDay()
     }, [coords, city]);
@@ -130,11 +136,11 @@ function App() {
                 {/* { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> } */}
                 {/* { !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} /> } */}
                 {
-                    !dataWeather.city
-                    ? ""
+                    !dataWeather.city || loading !== ""
+                    ? loading
                     : period
                     ? <InfoWeather {... dataWeather} />
-                    : !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} />
+                    : !dataWeatherFiveDays.list ? loading : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} />
                 }
             </WidgetBody>
         </Section>

@@ -48,7 +48,7 @@ const BtnLocation = ({ onCoordsGet }) => {
                 "" :
                 latitude === "" && longitude === "" ?
                 <div>Статус: {textContent}</div> :
-                <div>Широта: {latitude}, Долгота: {longitude}</div>
+                <div>Ваши координаты:<br/> lat: {latitude}, lon: {longitude}</div>
             }
         </div>
     )

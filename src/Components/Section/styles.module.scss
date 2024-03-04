@@ -13,3 +13,13 @@
         font-size: $font-size-large;
     }
 }
+
+@media (max-width: 470px) {
+
+    .widget__container {
+
+        .widget__title {
+            font-size: $font-size-middle;
+        }
+    }
+}
