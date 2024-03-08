@@ -1,4 +1,4 @@
-import './App.css';
+/* import './App.css'; */
 import { useState, useEffect } from "react";
 import { dateFormat } from "../src/Modules/dateFormat";
 import Section from "./Components/Section";
@@ -10,8 +10,8 @@ import InfoWeather from "./Components/InfoWeather";
 import InfoWeatherFiveDays from "./Components/InfoWeatherFiveDays";
 
 function App() {
-    const [coords, setCoords] = useState({})
     let [period, setPeriod] = useState(true)
+    const [coords, setCoords] = useState({})
     const [loading, setLoading] = useState('')
     const [city, setCity] = useState('')
     const [dataWeather, setDataWeather] = useState({})
@@ -41,12 +41,12 @@ function App() {
         }
         fetch(url)
             .then((response) => {
-                //console.log('response', response);
+                // console.log('response', response);
                 const result = response.json();
                 return result;
             })
             .then((data) => {
-                //console.log(data)
+                // console.log(data)
                 setDataWeather({
                     city: data.name,
                     temperature: Math.round(data.main.temp - 273),
@@ -62,7 +62,7 @@ function App() {
                 setLoading('')
             })
             .catch(() => {
-                console.log('error');
+                // console.log('error');
                 if (coords.latitude || coords.longitude || city) { setLoading('Информация не найдена...') }
             });
     }
@@ -82,8 +82,8 @@ function App() {
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
-                setDataWeatherFiveDays({ city: data.city.name, /* list: data.list */ list: [] })
+                // console.log(data)
+                setDataWeatherFiveDays({ city: data.city.name, list: [] })
                 for (let i = 0; i < data.list.length; i++) {
                     setDataWeatherFiveDays(prevState => ({ 
                         city: data.city.name,
@@ -103,28 +103,16 @@ function App() {
                 setLoading('')
             })
             .catch(() => {
-                console.log('error на 5 дней');
+                // console.log('error');
                 if (coords.latitude || coords.longitude || city) { setLoading('Информация не найдена...') }
             });
     }
 
     useEffect(() => {
-        /* console.log(coords)
-        console.log(city) */
         if (coords.latitude || coords.longitude || city) { setLoading('Идет поиск данных о погоде...') }
         request()
         requestFiveDay()
     }, [coords, city]);
-
-    useEffect(() => {
-        console.log(dataWeatherFiveDays.city);
-        if (dataWeather) {
-            /* console.log(dataWeather); */
-        }
-        if (dataWeatherFiveDays && dataWeatherFiveDays.list.length > 39) {
-            console.log(dataWeatherFiveDays.list);
-        }
-      }, [dataWeather, dataWeatherFiveDays]);
 
     return (
         <Section>
@@ -132,9 +120,6 @@ function App() {
                 <SearchBar onCityGet={handleCityName} />
                 <BtnLocation onCoordsGet={handleCoordValue} />
                 <BtnSwitch onPeriodGet={handlerClickSwitch} />
-                {/* { !dataWeather.city ? "" : <InfoWeather {... dataWeather} /> } */}
-                {/* { !dataWeatherFiveDays.city ? "" : <InfoWeatherFiveDays {... dataWeatherFiveDays.list[0]} city={dataWeatherFiveDays.city} /> } */}
-                {/* { !dataWeatherFiveDays.list ? "" : <InfoWeatherFiveDays list={dataWeatherFiveDays.list} city={dataWeatherFiveDays.city} /> } */}
                 {
                     !dataWeather.city || loading !== ""
                     ? loading

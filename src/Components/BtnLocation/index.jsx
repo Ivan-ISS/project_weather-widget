@@ -10,11 +10,10 @@ const BtnLocation = ({ onCoordsGet }) => {
     const success = (position) => {
         setLatitude(position.coords.latitude)
         setLongitude(position.coords.longitude)
-        const coords = {
+        onCoordsGet({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
-        }
-        onCoordsGet(coords)
+        })
     }
 
     const error = () => {
@@ -22,7 +21,6 @@ const BtnLocation = ({ onCoordsGet }) => {
     }
 
     const handlerClickLocation = () => {
-        console.log(latitude, longitude)
         if (!navigator.geolocation) {
             setTextContent('Geolocation  не поддерживается вашим браузером')
         } else {
